@@ -3,100 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESP32 周邊教學 - LED 控制</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>ESP32 接腳介紹</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <header>
         <nav class="nav-container">
-            <a href="../index.html" class="logo">🚀 ESP32 教學實驗室</a>
+            <a href="index.html" class="logo">🚀 ESP32 教學實驗室</a>
             <ul class="nav-links">
-                <li><a href="../index.html">首頁</a></li>
-                <li><a href="../pinout.html">接腳介紹</a></li>
-                <li><a href="led.html">外接模組(LED)</a></li>
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="pinout.html">接腳介紹</a></li>
+                <li><a href="modules/led.html">外接模組(LED)</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="hero-section">
-            <h1>市售元件教學：LED 燈光控制</h1>
-            <p>本頁面將介紹如何使用 ESP32 的數位輸出功能，控制外部發光二極體（LED）的亮滅與基本閃爍邏輯。</p>
+            <h1>ESP32 接腳配置 (Pinout)</h1>
+            <p>在動手連接外部元件之前，了解哪些接腳具備特殊功能、哪些接腳適合安全使用是非常重要的。</p>
         </section>
 
         <section>
-            <h2>1. 所需材料清單</h2>
-            <ul>
-                <li>ESP32 開發板 x 1</li>
-                <li>5mm LED 燈（顏色不限） x 1</li>
-                <li>220 歐姆電阻 x 1 (保護 LED 避免燒毀)</li>
-                <li>麵包板 x 1</li>
-                <li>杜邦線（公對公） x 數條</li>
-            </ul>
-        </section>
-
-        <section>
-            <h2>2. 腳位與接線說明</h2>
-            <p>LED 具有正負極之分：<strong>長腳為正極（Anode）</strong>，<strong>短腳（或瓶身平切面處）為負極（Cathode）</strong>。</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>LED 元件端</th>
-                        <th>連接對象</th>
-                        <th>ESP32 開發板端</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>長腳 (正極)</td>
-                        <td>接 220Ω 電阻的一端，電阻另一端接...</td>
-                        <td><strong>GPIO 23</strong></td>
-                    </tr>
-                    <tr>
-                        <td>短腳 (負極)</td>
-                        <td>直接連接</td>
-                        <td><strong>GND (接地)</strong></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section>
-            <h2>3. 接線範例圖</h2>
+            <h2>開發板接腳參考圖</h2>
             <div class="image-placeholder">
-                <p>【請在此放入您的 LED 接線實體圖或 Fritzing 電路圖】</p>
-                <p style="font-size: 0.8rem; margin-top: 0.5rem;">建議：圖片命名為 led_wiring.png 放置於專案中</p>
+                <p>【請在此放入您的 ESP32 Pinout 圖片】</p>
+                <p style="font-size: 0.8rem; margin-top: 0.5rem;">提示：將圖片命名為 pinout.png 並放於專案中，以 &lt;img&gt; 標籤替換此區塊</p>
             </div>
         </section>
 
         <section>
-            <h2>4. 範例程式碼 (Arduino IDE)</h2>
-            <p>請將以下程式碼複製到您的 Arduino IDE 中，並選擇正確的 ESP32 開發板進行燒錄。</p>
-<pre><code>// 定義控制 LED 的 GPIO 腳位
-const int ledPin = 23;
-
-void setup() {
-  // 將 GPIO 23 設定為輸出模式
-  pinMode(ledPin, OUTPUT);
-}
-
-void loop() {
-  digitalWrite(ledPin, HIGH); // 輸出高電位，點亮 LED
-  delay(1000);                // 等待 1 秒鐘 (1000 毫秒)
-  
-  digitalWrite(ledPin, LOW);  // 輸出低電位，熄滅 LED
-  delay(1000);                // 再等待 1 秒鐘
-}</code></pre>
-        </section>
-
-        <section>
-            <h2>5. 常見問題與除錯</h2>
+            <h2>常用接腳功能分類說明</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>功能類型</th>
+                        <th>建議使用接腳</th>
+                        <th>注意事項</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>數位輸入/輸出 (Digital I/O)</strong></td>
+                        <td>GPIO 12, 13, 14, 25, 26, 27, 32, 33</td>
+                        <td>最安全使用的通用接腳，無特殊限制。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>類比輸入 (ADC)</strong></td>
+                        <td>ADC1 (GPIO 32 - 39)</td>
+                        <td>當啟用 Wi-Fi 時，ADC2 (GPIO 0, 2, 4, 12-15, 25-27) 將無法準確讀取，請優先使用 ADC1。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>I2C 通訊</strong></td>
+                        <td>SDA (GPIO 21), SCL (GPIO 22)</td>
+                        <td>常用於連接 LCD 顯示器、OLED 或各類環境感測器。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>僅供輸入接腳</strong></td>
+                        <td>GPIO 34, 35, 36, 39</td>
+                        <td>這些接腳只能作為「輸入」（Input），內部沒有拉高或拉低電阻，亦不能作輸出。</td>
+                    </tr>
+                </tbody>
+            </table>
+            
             <div class="alert-info">
-                <strong>💡 為什麼我的 LED 不會亮？</strong><br>
-                1. 檢查 LED 正負極是否接反（長腳必須透過電阻接在 GPIO，短腳接 GND）。<br>
-                2. 確認程式碼中的 <code>ledPin</code> 數字與您實體接線的 GPIO 號碼完全一致（注意：是 GPIO 號碼，而非開發板上的引腳順序編號）。<br>
-                3. 確認電阻阻值是否過大（如誤用 10K 歐姆電阻會導致電流過小使 LED 不亮）。
+                <strong>⚠️ 避開使用的 Strapping 引腳：</strong> GPIO 0, GPIO 2, GPIO 5, GPIO 12, GPIO 15。這些引腳在晶片開機或重置時會決定其啟動模式，如果外接電路改變了它們的電位，可能會導致 ESP32 無法順利開機或無法燒錄程式。
             </div>
         </section>
     </main>

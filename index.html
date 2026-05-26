@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32 基礎教學網 - 首頁</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="nav-container">
+            <a href="index.html" class="logo">🚀 ESP32 教學實驗室</a>
+            <ul class="nav-links">
+                <li><a href="index.html">首頁</a></li>
+                <li><a href="pinout.html">接腳介紹</a></li>
+                <li><a href="modules/led.html">外接模組(LED)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h1>歡迎來到 ESP32 基礎教學網站</h1>
+            <p>本網站專為物聯網（IoT）初學者設計，提供從核心晶片功能、接腳配置，到各類市售周邊模組的完整接線與程式開發指南。</p>
+        </section>
+
+        <section>
+            <h2>ESP32 核心功能介紹</h2>
+            <p>ESP32 是一款低成本、低功耗的單晶片微控制器（MCU），集成了 Wi-Fi 和雙模藍牙。它擁有強大的雙核處理器，非常適合用於智慧家庭、穿戴式裝置及各類 IoT 專案。</p>
+            
+            <div class="grid-container">
+                <div class="card">
+                    <h3>雙核心處理器</h3>
+                    <p>搭載 Tensilica Xtensa 32-bit LX6 雙核處理器，時脈最高可達 240 MHz，運算效能強大。</p>
+                </div>
+                <div class="card">
+                    <h3>無線通訊能力</h3>
+                    <p>原生內建 802.11 b/g/n Wi-Fi 以及藍牙 (BR/EDR 和 BLE v4.2)，免去外接通訊模組的麻煩。</p>
+                </div>
+                <div class="card">
+                    <h3>豐富的外設介面</h3>
+                    <p>支援 ADC、DAC、I2C、SPI、UART、PWM 等多種通用硬體週邊介面。</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>常見 ESP32 開發板版本</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>版本名稱</th>
+                        <th>核心晶片</th>
+                        <th>主要特點</th>
+                        <th>適用場景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ESP32-NodeMCU (30 Pin/38 Pin)</td>
+                        <td>ESP-WROOM-32</td>
+                        <td>最市售常見、價格便宜、麵包板友善。</td>
+                        <td>新手入門、基礎實驗、教學示範。</td>
+                    </tr>
+                    <tr>
+                        <td>ESP32-CAM</td>
+                        <td>ESP32-S</td>
+                        <td>內建 OV2640 攝影機模組與 MicroSD 卡槽。</td>
+                        <td>影像辨識、遠端監控、縮時攝影。</td>
+                    </tr>
+                    <tr>
+                        <td>ESP32-S3 DevKitC</td>
+                        <td>ESP32-S3</td>
+                        <td>支援向量指令加速（AI）、更多 GPIO 接腳。</td>
+                        <td>邊緣運算、語音辨識、高階控制。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h2>開始學習外接產品</h2>
+            <p>點選下方連結或上方導覽列，進入各別硬體模組的獨立教學頁面：</p>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>💡 基礎數位輸出：LED 控制</h3>
+                    <p>學習如何透過 GPIO 輸出高低電位，控制外部 LED 燈的亮滅與閃爍。</p>
+                    <a href="modules/led.html" style="color: var(--primary-color); text-decoration: none; font-weight: bold; display: block; margin-top: 1rem;">進入教學 →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 ESP32 基礎教學網. 適合佈署於 GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
